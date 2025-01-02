@@ -1,15 +1,22 @@
-import {createContext, useState} from "react";
-import {Customer} from "../models/Customer.ts";
+import { createContext, useReducer, ReactNode, Dispatch } from "react";
+import CustomerReducer, { CustomerAction, initialState } from "../reducers/CustomerReducer";
+import Customer from "../models/Customer";
 
-export const CustomerContext  = createContext();
+type CustomerContextType = [Customer[], Dispatch<CustomerAction>];
 
-export function CustomerProvider({children}) {
+export const CustomerContext = createContext<CustomerContextType>([[], () => {}]);
 
-    const [customers, setCustomers] = useState<Customer[]>([]);
+interface CustomerProviderProps {
+    children: ReactNode;
+}
 
+function CustomerProvider({ children }: CustomerProviderProps) {
+    const [customers, dispatch] = useReducer(CustomerReducer, initialState);
     return (
-        <CustomerContext.Provider value={[customers, setCustomers]}>
+        <CustomerContext.Provider value={[customers, dispatch]}>
             {children}
         </CustomerContext.Provider>
     );
 }
+
+export default CustomerProvider

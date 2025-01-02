@@ -1,64 +1,88 @@
-import { useContext } from "react"
-import { Customer } from "../models/Customer.ts"
-import { CustomerContext } from "../store/CustomerProvider.tsx"
-import React from "react"
-import "./Dashboard.css"
+import { useContext } from "react";
+import { CustomerContext } from "../store/CustomerProvider";
+import { ItemContext } from "../store/ItemProvider";
 
-export function Dashboard() {
-  const [customers, setCustomers] = useContext(CustomerContext)
+function Dashboard() {
+  const [customers] = useContext(CustomerContext);
+  const [items] = useContext(ItemContext);
   return (
-    <div className="p-6">
-      <h1 className="text-3xl font-bold text-gray-700 mb-6">Dashboard</h1>
-
-      {/* main section */}
-      <div className="grid grid-cols-2">
-        {/* left  */}
+      <div className="max-w-5xl mx-auto pt-10 flex justify-between  ">
         <div>
-          <h1 className="text-2xl font-bold text-gray-800 mb-1 text-custom-color">
-            Customers
-          </h1>
-          <table className="table-auto border border-gray-200 w-full">
-            <thead>
+          <h2 className="text-2xl font-bold mb-4 text-center">Customer</h2>
+          <div className="overflow-x-auto">
+            <table className="min-w-full bg-white shadow-md rounded-lg">
+              <thead className="bg-gray-50">
               <tr>
-                <td className="custom-table-td">Name</td>
-                <td className="custom-table-td">Email</td>
-                <td className="custom-table-td">Phone</td>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  Name
+                </th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  Email
+                </th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  Phone
+                </th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  Address
+                </th>
               </tr>
-            </thead>
-            <tbody>
-              {customers.map((customer: Customer) => (
-                <tr>
-                  <td className="custom-table-td">{customer.name}</td>
-                  <td className="custom-table-td text-gray-600">
-                    {customer.email}
-                  </td>
-                  <td className="custom-table-td">{customer.phone}</td>
-                </tr>
-                // <div key={customer.email}>
-                //   {customer.name + " " + customer.email + " " + customer.phone}
-                // </div>
+              </thead>
+              <tbody className="bg-white divide-y divide-gray-200">
+              {customers.map((customer) => (
+                  <tr key={customer.email}>
+                    <td className="px-6 py-4 whitespace-nowrap">
+                      {customer.name}
+                    </td>
+                    <td className="px-6 py-4 whitespace-nowrap">
+                      {customer.email}
+                    </td>
+                    <td className="px-6 py-4 whitespace-nowrap">
+                      {customer.phone}
+                    </td>
+                    <td className="px-6 py-4 whitespace-nowrap">
+                      {customer.address}
+                    </td>
+                  </tr>
               ))}
-            </tbody>
-          </table>
+              </tbody>
+            </table>
+          </div>
         </div>
-
-        {/* right */}
-        <div className="p-5">
-          <h1 className="text-2xl font-bold text-gray-800 mb-1">Item</h1>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 ">
-            {customers.map((customer: Customer) => (
-              <div className="bg-white shadow-md rounded-lg p-4 border border-gray-200">
-                <h2 className="text-lg font-semibold text-blue-600">
-                  {customer.name}
-                </h2>
-                <p className="text-gray-600">{customer.email}</p>
-                <p className="text-gray-600">{customer.phone}</p>
-              </div>
-            ))}
+        <div>
+          <h2 className="text-2xl font-bold mb-4 text-center">Item</h2>
+          <div className="overflow-x-auto">
+            <table className="min-w-full bg-white shadow-md rounded-lg">
+              <thead className="bg-gray-50">
+              <tr>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  Id
+                </th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  Item Name
+                </th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  Price
+                </th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  Quantity
+                </th>
+              </tr>
+              </thead>
+              <tbody className="bg-white divide-y divide-gray-200">
+              {items.map((item) => (
+                  <tr key={item.id}>
+                    <td className="px-6 py-4 whitespace-nowrap">{item.id}</td>
+                    <td className="px-6 py-4 whitespace-nowrap">{item.itemName}</td>
+                    <td className="px-6 py-4 whitespace-nowrap">{item.price}</td>
+                    <td className="px-6 py-4 whitespace-nowrap">{item.quantity}</td>
+                  </tr>
+              ))}
+              </tbody>
+            </table>
           </div>
         </div>
       </div>
-    </div>
-  )
+  );
 }
+
+export default Dashboard;

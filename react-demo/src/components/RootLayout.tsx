@@ -2,7 +2,7 @@ import React from "react"
 import { Navigation } from "./Navigation.tsx"
 import { Outlet } from "react-router"
 
-export function RootLayout() {
+function RootLayout() {
   return (
     <>
       <Navigation></Navigation>
@@ -12,3 +12,5 @@ export function RootLayout() {
     </>
   )
 }
+
+export default RootLayout
