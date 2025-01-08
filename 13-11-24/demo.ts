@@ -11,3 +11,16 @@ multiple = false;
 console.log(multiple);
 
 let x; //if we don't mention any data type for the variable, as a default it gains "any" data type.
+
+//in TS we use let and const.
+
+//TS arrays
+let ar1 = []; //type is never
+let ar2 = [1,2,3]; //type is number
+let ar3 = ["A","B","1"]; //type is string
+let ar4 = [1,"2",true]; //type is any
+
+let ar5: [];
+let ar6: any[] = [];
+let ar7: Array<string>;
+ar7 = ['1','2'];
