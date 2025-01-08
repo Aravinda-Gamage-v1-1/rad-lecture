@@ -1,0 +1,10 @@
+var num = 10;
+var str = "String";
+var boo = true;
+var any = "Any";
+var nev;
+var unk;
+var multiple = 1234;
+multiple = "abc";
+multiple = false;
+console.log(multiple);

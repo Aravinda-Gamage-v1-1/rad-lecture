@@ -1,16 +1,13 @@
-let x =10;
-const y =20;
+let num: number = 10;
+let str: string = "String";
+let boo: boolean = true;
+let any: any = "Any"; //means any type of value can assign any data typed variable. this is default data types in TS. it removes the TS type safe behavior.
+let nev: never; //means no value can be assigned to never typed variables. mainly use in exception handling.
+let unk: unknown;  //means undefined (not any).
 
+let multiple: number | string | boolean = 1234; //we can mention multiple data types for a variable.
+multiple = "abc";
+multiple = false;
+console.log(multiple);
 
-x=2;
-// y=2;          //can't assign bcz it's const
-console.log(typeof y);
-
-
-function func(x1:number,x2:number){
-    console.log(x1+x2) 
-} 
-
-console.log(func(10,20))
-
-console.log(typeof(y))
+let x; //if we don't mention any data type for the variable, as a default it gains "any" data type.
